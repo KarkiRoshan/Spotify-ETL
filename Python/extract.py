@@ -13,11 +13,6 @@ def extraction():
                                                    redirect_uri=spotify_redirect_url,
                                                    scope="user-read-recently-played"))
     recently_played = sp.current_user_recently_played(limit=50)
-    ###for album
-    # print(recently_played['items'][0]['track']['album']['id'])
-    # print(recently_played['items'][0]['track']['album']['name'])
-    # print(recently_played['items'][0]['track']['album']['tot['track']['album']['name']al_tracks'])
-    # print(recently_played['items'][0]['track']['album']['external_urls']['spotify'])
     album_id = []
     album_name = []
     total_tracks = []
@@ -31,8 +26,6 @@ def extraction():
         album_link.append(item['track']['album']['external_urls']['spotify'])
     album_dict = {'album_id':album_id,'album_name':album_name,'date_time':album_release_date,'total_tracks':total_tracks,'album_link':album_link}
     album_df = pd.DataFrame.from_dict(album_dict)
-    # album_df.to_csv('./h.csv')
-    ##spotify_artist
     artist_id = []
     artist_name = []
     artist_url = []
@@ -44,7 +37,6 @@ def extraction():
             artist_url.append(artist['external_urls']['spotify'])
     artist_dict = {'artist_id':artist_id,'artist':artist_name,'artist_url':artist_url}
     artist_df = pd.DataFrame.from_dict(artist_dict)
-
     song_name = []
     song_id = []
     song_duration = []
@@ -64,6 +56,5 @@ def extraction():
         song_artist_name.append(song['track']['album']['artists'][0]['name'])
     song_dict = {'song_name':song_name,'song_id':song_id,'song_duration':song_duration,'song_url':song_url,'song_popularity':song_popularity,
                 'song_played_at':song_played_at,'song_album_id':song_album_id,'song_artist_name':song_artist_name}
-    song_df = pd.DataFrame.from_dict(song_dict)   
-    song_df.to_csv('./song.csv')         
+    song_df = pd.DataFrame.from_dict(song_dict)        
 extraction()                                   
