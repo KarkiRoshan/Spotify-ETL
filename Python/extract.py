@@ -26,6 +26,7 @@ def extraction():
         album_link.append(item['track']['album']['external_urls']['spotify'])
     album_dict = {'album_id':album_id,'album_name':album_name,'date_time':album_release_date,'total_tracks':total_tracks,'album_link':album_link}
     album_df = pd.DataFrame.from_dict(album_dict)
+    
     artist_id = []
     artist_name = []
     artist_url = []
@@ -37,6 +38,7 @@ def extraction():
             artist_url.append(artist['external_urls']['spotify'])
     artist_dict = {'artist_id':artist_id,'artist':artist_name,'artist_url':artist_url}
     artist_df = pd.DataFrame.from_dict(artist_dict)
+    
     song_name = []
     song_id = []
     song_duration = []
@@ -56,5 +58,7 @@ def extraction():
         song_artist_name.append(song['track']['album']['artists'][0]['name'])
     song_dict = {'song_name':song_name,'song_id':song_id,'song_duration':song_duration,'song_url':song_url,'song_popularity':song_popularity,
                 'song_played_at':song_played_at,'song_album_id':song_album_id,'song_artist_name':song_artist_name}
-    song_df = pd.DataFrame.from_dict(song_dict)        
-extraction()                                   
+    song_df = pd.DataFrame.from_dict(song_dict) 
+      
+    return album_df,artist_df,song_df    
+                                
