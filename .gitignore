@@ -3,3 +3,6 @@ Python/.env
 *.json
 /SpotifyVenv
 *.cache
+Python/playground.ipynb
+Python/__pycache__
+Python/.ipynb_checkpoints
